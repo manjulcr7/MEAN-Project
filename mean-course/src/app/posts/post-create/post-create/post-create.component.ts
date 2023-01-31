@@ -7,13 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PostCreateComponent implements OnInit {
 
+  enteredValue:string="";
   postContent:string="NO Content";
   constructor() { }
 
   ngOnInit() {
   }
-  onSave(textareaInput:HTMLTextAreaElement){
-    this.postContent=textareaInput.value;
+  onSave(){
+    this.postContent=this.enteredValue;
   }
 
 }
