@@ -12,7 +12,8 @@ export class PostCreateComponent implements OnInit {
 
   ngOnInit() {
   }
-  onSave(){
+  onSave(textareaInput:HTMLTextAreaElement){
+    this.postContent=textareaInput.value;
   }
 
 }

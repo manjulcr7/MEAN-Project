@@ -1,5 +1,5 @@
-<textarea rows="10" [value]="postContent"></textarea>
+<textarea rows="10" #textareaInput></textarea>
 <hr>
-<button (click)="onSave()">Save</button>
+<button (click)="onSave(textareaInput)">Save</button>
 <hr>
 <p>{{postContent}}</p>
