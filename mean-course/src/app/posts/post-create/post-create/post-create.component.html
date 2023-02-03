@@ -1,6 +1,11 @@
 
 <mat-card>
-<mat-form-field appearance="fill">
+  <mat-form-field >
+    <mat-label>Title</mat-label>
+    <input matInput [(ngModel)]="enteredTitle">
+  </mat-form-field>
+<mat-form-field >
+  <mat-label>Content</mat-label>
   <textarea matInput
             [(ngModel)]="enteredValue"
             ></textarea>
