@@ -8,10 +8,5 @@ import { Post } from "./posts/post.model";
 })
 export class AppComponent {
   title = "mean-course";
-  allPosts: Array<Post> = [];
   constructor() {}
-
-  GetNewPost(event: Post) {
-    this.allPosts.push(event);
-  }
 }
