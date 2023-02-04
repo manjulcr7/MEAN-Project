@@ -3,3 +3,7 @@ mat-form-field,
 textarea{
   width: 100%;
 }
+
+mat-form-field{
+  margin-top:10px;
+}
