@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { Post } from "./posts/post.model";
 
 @Component({
   selector: "app-root",
@@ -7,10 +8,10 @@ import { Component } from "@angular/core";
 })
 export class AppComponent {
   title = "mean-course";
-  allPosts = [];
+  allPosts: Array<Post> = [];
   constructor() {}
 
-  GetNewPost(event: any) {
+  GetNewPost(event: Post) {
     this.allPosts.push(event);
   }
 }
