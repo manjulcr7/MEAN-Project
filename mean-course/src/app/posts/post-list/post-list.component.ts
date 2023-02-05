@@ -9,14 +9,15 @@ import { PostService } from "../post.service";
   styleUrls: ["./post-list.component.css"],
 })
 export class PostListComponent implements OnInit, OnChanges, OnDestroy {
-  posts: Array<Post>;
+  posts: Array<Post> = [];
   postsSubscription: Subscription;
 
   constructor(public postService: PostService) {}
 
   ngOnChanges() {}
+
   ngOnInit() {
-    this.posts = this.postService.getAllPosts();
+    this.postService.getAllPosts();
     this.postsSubscription = this.postService
       .postsListener()
       .subscribe((posts: Post[]) => {
