@@ -33,6 +33,10 @@ export class PostService {
       });
   }
 
+  getPost(id: string) {
+    return this.http.get("http://localhost:3000/api/posts/" + id);
+  }
+
   postsListener() {
     return this.postUpdated.asObservable();
   }
@@ -47,6 +51,19 @@ export class PostService {
         console.log(res);
         post.id = res.postId;
         this.posts.push(post);
+        this.postUpdated.next([...this.posts]);
+      });
+  }
+
+  updatePost(id: string, post: Post) {
+    this.http
+      .put("http://localhost:3000/api/posts/" + id, post)
+      .subscribe((res) => {
+        console.log(res);
+        const updatedPosts = [...this.posts];
+        const index = updatedPosts.findIndex((p) => p.id == id);
+        updatedPosts[index] = post;
+        this.posts = updatedPosts;
         this.postUpdated.next([...this.posts]);
       });
   }
