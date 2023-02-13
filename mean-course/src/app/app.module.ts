@@ -11,6 +11,7 @@ import {
   MatButtonModule,
   MatExpansionModule,
   MatInputModule,
+  MatProgressSpinnerModule,
 } from "@angular/material";
 import { MatCardModule } from "@angular/material/card";
 import { MatToolbarModule } from "@angular/material/toolbar";
@@ -33,6 +34,7 @@ import { HttpClientModule } from "@angular/common/http";
     MatButtonModule,
     MatCardModule,
     MatToolbarModule,
+    MatProgressSpinnerModule,
     MatExpansionModule,
     HttpClientModule,
   ],
