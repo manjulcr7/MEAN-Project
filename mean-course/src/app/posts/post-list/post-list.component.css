@@ -1,4 +1,13 @@
-:host{
-  margin-top:10px;
+:host {
+  margin-top: 10px;
   display: block;
+}
+
+.post-image {
+  width: 100%;
+}
+
+.post-image img {
+  width: 100%;
+  box-shadow: 1px 1px 1px 5px rgba(0,0,0,0.5);
 }
