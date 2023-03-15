@@ -2,6 +2,7 @@ const express = require("express");
 const multer = require("multer");
 
 const Post = require("../models/post");
+const checkAuth = require("../middleware/check-auth");
 
 const router = express.Router();
 
@@ -29,6 +30,7 @@ const storage = multer.diskStorage({
 
 router.post(
   "",
+  checkAuth,
   multer({ storage: storage }).single("image"),
   (req, res, next) => {
     const url = req.protocol + "://" + req.get("host");
@@ -49,6 +51,7 @@ router.post(
 
 router.put(
   "/:id",
+  checkAuth,
   multer({ storage: storage }).single("image"),
   (req, res, next) => {
     var image = req.body.image;
@@ -60,7 +63,7 @@ router.put(
       _id: req.body.id,
       title: req.body.title,
       content: req.body.content,
-      image:  image,
+      image: image,
     });
     Post.updateOne({ _id: req.params.id }, post).then((result) => {
       res.status(200).json({
@@ -93,7 +96,7 @@ router.get("", (req, res, next) => {
   });
 });
 
-router.delete("/:id", (req, res, next) => {
+router.delete("/:id", checkAuth, (req, res, next) => {
   console.log(req.params.id);
   Post.deleteOne({ _id: req.params.id }).then((result) => {
     console.log("DELETED FROM MONGODB ");
