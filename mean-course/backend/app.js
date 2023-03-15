@@ -1,6 +1,8 @@
 const express = require("express");
 const path = require("path");
-const routes = require("./routes/posts");
+const postRoutes = require("./routes/posts");
+const userRoutes = require("./routes/user");
+
 
 const mongoose = require("mongoose");
 
@@ -36,6 +38,8 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use("/api/posts", routes);
+app.use("/api/posts", postRoutes);
+app.use("/api/user", userRoutes);
+
 
 module.exports = app;

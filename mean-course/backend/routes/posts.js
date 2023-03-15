@@ -51,7 +51,7 @@ router.put(
   "/:id",
   multer({ storage: storage }).single("image"),
   (req, res, next) => {
-    const image = req.body.image;
+    var image = req.body.image;
     if (req.file) {
       const url = req.protocol + "://" + req.get("host");
       image = url + "/images/" + req.file.filename;
@@ -60,7 +60,7 @@ router.put(
       _id: req.body.id,
       title: req.body.title,
       content: req.body.content,
-      image:  ,
+      image:  image,
     });
     Post.updateOne({ _id: req.params.id }, post).then((result) => {
       res.status(200).json({
