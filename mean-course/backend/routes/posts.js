@@ -38,7 +38,9 @@ router.post(
       title: req.body.title,
       content: req.body.content,
       image: url + "/images/" + req.file.filename,
+      creator: req.user.userId,
     });
+    console.log(post);
     post.save().then((createdPost) => {
       console.log(post);
       res.status(201).json({
@@ -65,11 +67,19 @@ router.put(
       content: req.body.content,
       image: image,
     });
-    Post.updateOne({ _id: req.params.id }, post).then((result) => {
-      res.status(200).json({
-        message: "Posts updated successfully!",
-      });
-    });
+    Post.updateOne({ _id: req.params.id, creator: req.user.userId }, post).then(
+      (result) => {
+        if (result.modifiedCount > 0) {
+          res.status(200).json({
+            message: "Posts updated successfully!",
+          });
+        } else {
+          res.status(401).json({
+            message: "User not authorized!",
+          });
+        }
+      }
+    );
   }
 );
 
@@ -86,9 +96,8 @@ router.get("/:id", (req, res, next) => {
 });
 
 //Manjul  DRwIygfwVH3dq3Ay
-router.get("", (req, res, next) => {
+router.get("", checkAuth, (req, res, next) => {
   Post.find().then((documents) => {
-    console.log(documents);
     res.status(200).json({
       message: "Posts fetched successfully!",
       posts: documents,
@@ -100,6 +109,16 @@ router.delete("/:id", checkAuth, (req, res, next) => {
   console.log(req.params.id);
   Post.deleteOne({ _id: req.params.id }).then((result) => {
     console.log("DELETED FROM MONGODB ");
+    console.log(result);
+    if (result.deletedCount > 0) {
+      res.status(200).json({
+        message: "Posts updated successfully!",
+      });
+    } else {
+      res.status(401).json({
+        message: "User not authorized!",
+      });
+    }
     res.status(200).json({
       message: "Posts deleted successfully!",
     });

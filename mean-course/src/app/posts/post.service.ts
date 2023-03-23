@@ -24,6 +24,7 @@ export class PostService {
               content: post.content,
               image: post.image,
               id: post._id,
+              creator: post.creator,
             };
           });
         })
