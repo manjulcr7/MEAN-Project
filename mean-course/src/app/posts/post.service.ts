@@ -79,6 +79,7 @@ export class PostService {
         title: post.title,
         content: post.content,
         image: post.image,
+        creator:null
       };
     }
     this.http

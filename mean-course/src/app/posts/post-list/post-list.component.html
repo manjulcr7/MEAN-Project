@@ -7,10 +7,10 @@
       </mat-panel-title>
     </mat-expansion-panel-header>
     <div class="post-image">
-      <img [src]="post.image" [alt]="post.title">
+      <img [src]="post.image" [alt]="post.title" />
     </div>
     <p>{{ post.content }}</p>
-    <mat-action-row *ngIf="isUserAuthenticated">
+    <mat-action-row *ngIf="isUserAuthenticated && userId == post.creator">
       <a [routerLink]="['/edit', post.id]" color="primary">Edit</a>
       <button mat-button color="warn" (click)="onDelete(post.id)">
         Delete

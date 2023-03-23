@@ -66,6 +66,7 @@ router.put(
       title: req.body.title,
       content: req.body.content,
       image: image,
+      creator: req.user.userId,
     });
     Post.updateOne({ _id: req.params.id, creator: req.user.userId }, post).then(
       (result) => {

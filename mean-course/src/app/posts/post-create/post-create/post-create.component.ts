@@ -72,6 +72,7 @@ export class PostCreateComponent implements OnInit {
       title: this.form.value.title,
       content: this.form.value.content,
       image: this.form.value.image,
+      creator : null
     };
     this.isLoading = true;
     if (this.isEditForm) {

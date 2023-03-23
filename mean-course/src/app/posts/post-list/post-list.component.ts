@@ -15,12 +15,12 @@ export class PostListComponent implements OnInit, OnChanges, OnDestroy {
   isLoading: boolean = false;
   isUserAuthenticated: boolean;
   userAuthenticatedSub: Subscription;
+  userId: string;
 
   constructor(
     public postService: PostService,
     private authService: AuthService
   ) {}
-
 
   ngOnChanges() {}
 
@@ -35,14 +35,16 @@ export class PostListComponent implements OnInit, OnChanges, OnDestroy {
         this.posts = posts;
       });
 
-      console.log("HERE");
+    console.log("HERE");
 
-      this.isUserAuthenticated = this.authService.GetIsUserAuthCurrentState();
+    this.isUserAuthenticated = this.authService.GetIsUserAuthCurrentState();
+    this.userId = this.authService.getUserId();
     this.userAuthenticatedSub = this.authService
       .IsUserAuthenticated()
       .subscribe((res) => {
         console.log(res);
         this.isUserAuthenticated = res;
+        this.userId = this.authService.getUserId();
       });
   }
 
